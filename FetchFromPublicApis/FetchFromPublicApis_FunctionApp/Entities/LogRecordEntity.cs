@@ -15,11 +15,14 @@ namespace FetchFromPublicApis_FunctionApp.Entities
         public string Content { get; set; }
         public DateTimeOffset? Timestamp { get; set; }
         public ETag ETag { get; set; }
+        public LogRecordEntity() : base()
+        {
+        }
 
         public LogRecordEntity(string content, DateTime requestDateTime)
         {
             PartitionKey = requestDateTime.ToString("dd-MM-yyyy");
-            RowKey = requestDateTime.ToString("dd-MM-yyyy HH:mm:ss");
+            RowKey = requestDateTime.ToString("dd-MM-yyyyTHH:mm:ss");
             Content = content;
             Timestamp = DateTime.UtcNow;
         }

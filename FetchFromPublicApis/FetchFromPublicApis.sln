@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FetchFromPublicApis_FunctionApp", "FetchFromPublicApis_FunctionApp\FetchFromPublicApis_FunctionApp.csproj", "{D5B91B7A-442F-4096-AB23-D632B73F527F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FetchFromPublicApis_FunctionApp", "FetchFromPublicApis_FunctionApp\FetchFromPublicApis_FunctionApp.csproj", "{D5B91B7A-442F-4096-AB23-D632B73F527F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FetchFromPublicApis_WebApi", "FetchFromPublicApis_WebApi\FetchFromPublicApis_WebApi.csproj", "{ECF263B2-3227-4681-8995-0D4677DE620E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D5B91B7A-442F-4096-AB23-D632B73F527F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5B91B7A-442F-4096-AB23-D632B73F527F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5B91B7A-442F-4096-AB23-D632B73F527F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECF263B2-3227-4681-8995-0D4677DE620E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECF263B2-3227-4681-8995-0D4677DE620E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECF263B2-3227-4681-8995-0D4677DE620E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECF263B2-3227-4681-8995-0D4677DE620E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

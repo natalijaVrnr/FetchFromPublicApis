@@ -6,6 +6,7 @@ using FetchFromPublicApis_FunctionApp.Services.BlobService;
 using FetchFromPublicApis_FunctionApp.Services.TableService;
 using FetchFromPublicApis_FunctionApp.Entities;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace FetchFromPublicApis_FunctionApp.Functions
 {
@@ -15,7 +16,7 @@ namespace FetchFromPublicApis_FunctionApp.Functions
         private static readonly string _apiUrl = "https://api.publicapis.org/random?auth=null";
         private IBlobService _blobService;
         private ITableService _tableService;
-        private ILogger<FetchData> _logger;
+        private readonly ILogger<FetchData> _logger;
 
         public FetchData(IBlobService blobService, ITableService tableService, ILogger<FetchData> logger)
         {
@@ -32,18 +33,19 @@ namespace FetchFromPublicApis_FunctionApp.Functions
             {
                 _logger.LogInformation($"Sending request to {_apiUrl}");
                 response = await _httpClient.GetAsync(_apiUrl);
-                _logger.LogInformation($"Received response: {response.ToString()}");
+                _logger.LogInformation($"Response: {response}");
 
                 DateTime requestDateTime = response.Headers.Date.Value.DateTime;
 
                 if (response.IsSuccessStatusCode)
                 {
                     string responseBody = await response.Content.ReadAsStringAsync();
+                    _logger.LogInformation($"Response body: {responseBody}");
 
-                    _logger.LogInformation($"Uploading response to {requestDateTime.ToString("yyyy-MM-dd")}/{requestDateTime.ToString("yyyy-MM-ddTHH:mm:ss")}.txt");
+                    _logger.LogInformation($"Uploading response to {requestDateTime.ToString("dd-MM-yyyy")}/{requestDateTime.ToString("dd-MM-yyyyTHH:mm:ss")}.json");
                     await _blobService.UploadBlobFromStream("data",
-                        $"{requestDateTime.ToString("yyyy-MM-dd")}/{requestDateTime.ToString("yyyy-MM-ddTHH:mm:ss")}.txt", responseBody);
-                    _logger.LogInformation($"Uploaded to blob {requestDateTime.ToString("yyyy-MM-dd")}/{requestDateTime.ToString("yyyy-MM-ddTHH:mm:ss")}.txt");
+                        $"{requestDateTime.ToString("dd-MM-yyyy")}/{requestDateTime.ToString("dd-MM-yyyyTHH:mm:ss")}.json", responseBody);
+                    _logger.LogInformation($"Uploaded to blob {requestDateTime.ToString("dd-MM-yyyy")}/{requestDateTime.ToString("dd-MM-yyyyTHH:mm:ss")}.json");
                     
                     _logger.LogInformation($"Uploading log to success table");
                     var logRecordEntity = new LogRecordEntity(response.ToString(), requestDateTime);
@@ -62,7 +64,7 @@ namespace FetchFromPublicApis_FunctionApp.Functions
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.ToString());
+                _logger.LogError(ex, "An error occurred while processing the request.");
             }
         }
     }

@@ -5,5 +5,6 @@ namespace FetchFromPublicApis_FunctionApp.Services.BlobService
     public interface IBlobService
     {
         Task UploadBlobFromStream(string containerName, string blobName, string blobContent);
+        Task<string> GetBlobContent(string containerName, string blobName);
     }
 }

@@ -4,3 +4,7 @@
 
 /.vs
 /FetchFromPublicApis/.vs
+/FetchFromPublicApis/FetchFromPublicApis_WebApi/bin/Debug/net6.0
+/FetchFromPublicApis/FetchFromPublicApis_WebApi/obj
+/FetchFromPublicApis/FetchFromPublicApis_WebApi/appsettings.json
+/FetchFromPublicApis/FetchFromPublicApis_WebApi/appsettings.Development.json
